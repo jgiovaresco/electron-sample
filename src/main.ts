@@ -17,14 +17,11 @@ export default class Main {
     });
 
     await Main.mainWindow.loadFile("./index.html");
-    Main.mainWindow.webContents.openDevTools({ mode: "detach" });
     Main.mainWindow.on("closed", Main.onClose);
   }
 
   private static onWindowAllClosed() {
-    if (process.platform !== "darwin") {
-      Main.application.quit();
-    }
+    Main.application.quit();
   }
 
   private static onClose() {
