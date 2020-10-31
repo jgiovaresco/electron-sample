@@ -42,7 +42,10 @@ export default class Main {
     }
   }
 
-  static main(app: Electron.App, browserWindow: typeof BrowserWindow) {
+  public static main(
+    app: Electron.App,
+    browserWindow: typeof BrowserWindow
+  ): void {
     // we pass the Electron.App object and the
     // Electron.BrowserWindow into this function
     // so this class has no dependencies. This
