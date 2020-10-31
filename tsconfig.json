@@ -2,8 +2,10 @@
   "compilerOptions": {
     "incremental": true,
     "module": "commonjs",
+    "moduleResolution": "node",
     "outDir": "dist",
 
+    "allowJs": true,
     "sourceMap": true,
     "strict": true,
 

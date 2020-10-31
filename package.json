@@ -2,7 +2,7 @@
   "name": "electron-sample",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "main": ".webpack/main",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
@@ -14,7 +14,7 @@
     "lint:prettier:fix": "prettier --write '**/*.{ts,js,md,json}'",
     "make": "electron-forge make",
     "package": "electron-forge package",
-    "prestart": "npm run build",
+    "publish": "electron-forge publish",
     "start": "electron-forge start"
   },
   "commitlint": {
@@ -45,13 +45,20 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.54",
+    "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
+    "css-loader": "^4.2.1",
     "electron": "^10.1.5",
     "eslint": "^7.12.1",
+    "fork-ts-checker-webpack-plugin": "^5.0.14",
     "husky": "^4.3.0",
     "lint-staged": "^10.5.1",
+    "node-loader": "^1.0.1",
     "prettier": "^2.1.2",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^8.0.2",
     "typescript": "^4.0.5"
   },
   "dependencies": {
@@ -81,6 +88,27 @@
           "name": "@electron-forge/maker-rpm",
           "config": {}
         }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./script/webpack.main.config.js",
+            "renderer": {
+              "config": "./script/webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "name": "main_window",
+                  "html": "./src/index.html",
+                  "js": "./src/renderer.ts",
+                  "preload": {
+                    "js": "./src/preload.ts"
+                  }
+                }
+              ]
+            }
+          }
+        ]
       ]
     }
   }
