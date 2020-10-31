@@ -1,3 +1,5 @@
+import * as path from "path";
+
 import { App, BrowserWindow } from "electron";
 
 export default class Main {
@@ -10,7 +12,7 @@ export default class Main {
       width: 800,
       height: 600,
       webPreferences: {
-        nodeIntegration: true,
+        preload: path.join(__dirname, "preload.js"),
       },
     });
 
