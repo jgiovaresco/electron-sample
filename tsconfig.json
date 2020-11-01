@@ -5,6 +5,7 @@
     "moduleResolution": "node",
     "outDir": "dist",
 
+    "jsx": "react",
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
