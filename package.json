@@ -93,6 +93,7 @@
         [
           "@electron-forge/plugin-webpack",
           {
+            "port": 3333,
             "mainConfig": "./script/webpack.main.config.js",
             "renderer": {
               "config": "./script/webpack.renderer.config.js",
